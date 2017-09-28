@@ -733,6 +733,12 @@ public class StatusBar extends SystemUI implements DemoMode,
             mContext.getContentResolver().registerContentObserver(Settings.System.getUriFor(
                     Settings.System.PULSE_ON_NEW_TRACKS),
                     false, this, UserHandle.USER_ALL);
+            mContext.getContentResolver().registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.HEADS_UP_STOPLIST_VALUES),
+                    false, this);
+            mContext.getContentResolver().registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.HEADS_UP_BLACKLIST_VALUES),
+                    false, this);
         }
 
         @Override
@@ -753,6 +759,8 @@ public class StatusBar extends SystemUI implements DemoMode,
             }
             handleCutout(null);
             setPulseOnNewTracks();
+            setHeadsUpStoplist();
+            setHeadsUpBlacklist();
         }
     }
 
@@ -765,6 +773,16 @@ public class StatusBar extends SystemUI implements DemoMode,
     }
 
     private CustomSettingsObserver mCustomSettingsObserver;
+
+    private void setHeadsUpStoplist() {
+        if (mNotificationInterruptStateProvider != null)
+            mNotificationInterruptStateProvider.setHeadsUpStoplist();
+    }
+
+    private void setHeadsUpBlacklist() {
+        if (mNotificationInterruptStateProvider != null)
+            mNotificationInterruptStateProvider.setHeadsUpBlacklist();
+    }
 
     /**
      * Public constructor for StatusBar.
