@@ -155,6 +155,7 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
     private int mMediaTotalTopMargin;
     private int mFooterMarginStartHorizontal;
     private Consumer<Boolean> mMediaVisibilityChangedListener;
+    private boolean mMediaVisible;
 
     protected boolean mIsLandscape;
 
@@ -429,6 +430,18 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
 
     private void updateViewVisibilityForTuningValue(View view, @Nullable String newValue) {
         view.setVisibility(TunerService.parseIntegerSwitch(newValue, true) ? VISIBLE : GONE);
+    }
+
+    private void updateMinRows() {
+        if (getTileLayout() == null) {
+            return;
+        }
+        if (!mMediaVisible) {
+            int rows = Settings.System.getIntForUser(
+                    mContext.getContentResolver(), Settings.System.QS_LAYOUT_ROWS, 3,
+                    UserHandle.USER_CURRENT);
+            getTileLayout().setMinRows(mIsLandscape ? 1 : rows);
+        }
     }
 
     public void openDetails(String subPanel) {
@@ -1327,6 +1340,7 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
         if (mTileLayout != null) {
             mTileLayout.updateSettings();
         }
+        updateMinRows();
     }
 
     public int getNumColumns() {

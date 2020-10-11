@@ -90,5 +90,6 @@ public class SystemSettings {
         Settings.System.LOCKSCREEN_MEDIA_METADATA,
         Settings.System.OMNI_QS_LAYOUT_COLUMNS_LANDSCAPE,
         Settings.System.OMNI_QS_LAYOUT_COLUMNS,
+        Settings.System.QS_LAYOUT_ROWS,
     };
 }
