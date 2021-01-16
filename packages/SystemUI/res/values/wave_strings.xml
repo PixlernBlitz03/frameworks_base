@@ -148,4 +148,7 @@
     <string name="qs_menu_item_tint_accent">Accent</string>
     <string name="qs_menu_item_tint_oos">Oxygen OS</string>
 
+    <!-- Ambient Music Ticker -->
+    <string name="ambientmusic_songinfo" formatted="false">%s by %s</string>
+
 </resources>
