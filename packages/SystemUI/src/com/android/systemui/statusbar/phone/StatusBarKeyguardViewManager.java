@@ -349,7 +349,7 @@ public class StatusBarKeyguardViewManager implements RemoteInputController.Callb
         String currentClock = Settings.Secure.getString(
             resolver, Settings.Secure.LOCK_SCREEN_CUSTOM_CLOCK_FACE);
         boolean mCustomClockSelectionType = currentClock == null ? false : currentClock.contains("TypeClockController");
-        boolean mCustomClockSelectionOOS = currentClock == null ? false : currentClock.contains("OOS");
+        boolean mCustomClockSelectionOOS = (currentClock == null ? false : currentClock.contains("OOS") || currentClock.contains("SClock") || currentClock.contains("SDP3Clock"));
 
         FrameLayout.LayoutParams paramsContainer =
             (FrameLayout.LayoutParams) mLockIconContainer.getLayoutParams();
