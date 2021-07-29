@@ -316,7 +316,7 @@ public class KeyguardStatusView extends GridLayout implements
         final ContentResolver resolver = mContext.getContentResolver();
         String currentClock = Settings.Secure.getString(
             resolver, Settings.Secure.LOCK_SCREEN_CUSTOM_CLOCK_FACE);
-        return currentClock == null ? false : currentClock.contains("OOS");
+        return currentClock == null ? false : (currentClock.contains("OOS") || currentClock.contains("Twelve"));
     }
 
     private int getCustomClockPaddingStart() {
